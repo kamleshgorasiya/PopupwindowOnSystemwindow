@@ -32,21 +32,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_main);
+         setContentView(R.layout.activity_main);
+        finish();
         Button button=(Button)findViewById(R.id.idBtnClick);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getApplicationContext(),"You Clicked Me??",Toast.LENGTH_LONG).show();
                 //initiatePopupWindow();
-               // startService(new Intent(getBaseContext(), PopUpService.class));
-                startService(new Intent(PopUpService.MY_SERVICE));
+               startService(new Intent(getBaseContext(), PopUpService.class));
+               // startService(new Intent(PopUpService.MY_SERVICE));
                 finish();
             }
         });
 
        // initiatePopupWindow();
-        initiatePopupWindow();
+       // initiatePopupWindow();
 
     }
 

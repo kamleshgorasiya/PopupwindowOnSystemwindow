@@ -36,6 +36,7 @@ public class PopUpService extends Service {
     int recButtonFirstX;
     int recButtonFirstY;
     boolean isLastActionDown=false;
+    PopUpService service;
 
     LayoutInflater li;
 
@@ -53,6 +54,7 @@ public class PopUpService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        service=this;
        ///Toast.makeText(getBaseContext(), "onCreate", Toast.LENGTH_LONG).show();
         inittouchWindow();
 
@@ -89,7 +91,8 @@ public class PopUpService extends Service {
                 case MotionEvent.ACTION_UP:
                     if(isLastActionDown) {
                         recButtonWindowManager.removeView(getCustomeView());
-                        stopService(new Intent(PopUpService.MY_SERVICE));
+                       // service.stopSelf();
+                        //stopService(new Intent(coPopUpService.this));
                     }
                     break;
                 case MotionEvent.ACTION_MOVE:
@@ -127,7 +130,7 @@ public class PopUpService extends Service {
         prms = new WindowManager.LayoutParams();
         prms.format = PixelFormat.TRANSLUCENT;
         prms.flags = WindowManager.LayoutParams.FORMAT_CHANGED; // 8
-        prms.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+        prms.type = WindowManager.LayoutParams.TYPE_PHONE;
         prms.gravity = Gravity.TOP | Gravity.CENTER;
         prms.width = WindowManager.LayoutParams.MATCH_PARENT;
         prms.height = WindowManager.LayoutParams.WRAP_CONTENT;
