@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Demo</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="lbl_required">Required</string>
+    <string name="lbl_choose_fields">Choose fields</string>
+    <string name="lbl_name">Name</string>
+    <string name="lbl_email">Email</string>
+    <string name="lbl_mobile">Mobile</string>
+
+    <color name="blue">#EE0C6299</color>
+    <color name="dark_blue">#3079ed</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="brown">#585858</color>
+    <color name="light_green">#2A920D</color>
+    <color name="dark_green">#127021</color>
+    <color name="red">#FF0000</color>
+    <color name="dark_yellow">#fe9900</color>
+    <color name="gray">#c3c3c3</color>
+    <color name="light_gray">#D3D3D3</color>
+    <color name="color_dark_gray">#333333</color>
+    <color name="trans_black">#99000000</color>
+    <color name="trans_black1">#99000000</color>
+
+
+    <color name="default_text">#E8F7FE</color>
+    <color name="default_sign_up_btn">#16C95C</color>
+    <color name="default_background">#353966</color>
+
+</resources>

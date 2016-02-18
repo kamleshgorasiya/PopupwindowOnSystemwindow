@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/idDialogParent"
+    android:layout_width="match_parent"
+    android:background="@drawable/radius_all"
+    android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/idTitle"
+            android:textSize="@dimen/default_size"
+           android:layout_gravity="center"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_choose_fields"
+            android:textColor="@color/white" />
+    <View
+       android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/d10dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/idChkName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_name"
+                android:checked="true" />
+
+            <CheckBox
+                android:id="@+id/idChkEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_email"
+                android:checked="true" />
+
+            <CheckBox
+                android:id="@+id/idChkMobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_mobile"
+                android:checked="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <CheckBox
+                android:id="@+id/idChkRequiredName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_required"
+                android:textColor="@color/red"
+                android:checked="true" />
+
+            <CheckBox
+                android:id="@+id/idChkRequiredEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_required"
+                android:textColor="@color/red"
+                android:checked="true" />
+
+            <CheckBox
+                android:id="@+id/idChkRequiredMobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_required"
+                android:textColor="@color/red"
+                android:checked="true" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
