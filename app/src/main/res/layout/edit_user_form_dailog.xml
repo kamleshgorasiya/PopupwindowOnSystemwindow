@@ -4,21 +4,39 @@
     android:orientation="vertical"
     android:id="@+id/idDialogParent"
     android:layout_width="match_parent"
+    android:layout_gravity="bottom"
     android:background="@drawable/radius_all"
     android:layout_height="wrap_content"
     android:windowBackground="@android:color/transparent"
     android:windowIsTranslucent="true"
     android:windowAnimationStyle="@android:style/Animation.Translucent">
-        <TextView
-            android:id="@+id/idTitle"
-            android:textSize="@dimen/default_size"
-           android:layout_gravity="center"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lbl_choose_fields"
-            android:textColor="@color/white" />
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/idTitle"
+                android:textSize="@dimen/default_size"
+                android:layout_gravity="center"
+
+                android:padding="10dp"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_choose_fields"
+                android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/idClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="X"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                android:background="@color/white"
+               android:layout_alignParentRight="true"
+                android:textColor="@color/red"
+                android:textSize="32sp" />
+        </RelativeLayout>
     <View
        android:background="@color/white"
         android:layout_width="match_parent"
