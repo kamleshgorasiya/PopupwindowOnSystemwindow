@@ -35,13 +35,14 @@ public class MyReceiver extends BroadcastReceiver {
             Log.e("MY_DEBUG_TAG", state+" <== Daynamic   |  EXTRA_STATE_OFFHOOK==>"+TelephonyManager.EXTRA_STATE_OFFHOOK);
 
             if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)) {
-                Intent popIntent = new Intent(context, PopUpService.class);
-                context.startService(popIntent);
+                Intent popIntent = new Intent(context, IncomingCallActivity.class);
+                popIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                popIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                context.startActivity(popIntent);
 
             }
             else if(state.equals(TelephonyManager.EXTRA_STATE_IDLE)){
-                Intent popIntent = new Intent(context, PopUpService.class);
-                context.stopService(popIntent);
+
             }
         }
     }

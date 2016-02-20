@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -28,6 +29,14 @@ public class IncomingCallActivity extends Activity {
             Log.d("IncominActivity: ", "flagy");
 
             setContentView(R.layout.edit_user_form_dailog);
+            TextView textView=(TextView)findViewById(R.id.idClose);
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    finish();
+                }
+            });
 
             Log.d("IncomingCaivity: ", "flagz");
 
