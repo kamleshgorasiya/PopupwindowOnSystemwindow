@@ -14,4 +14,7 @@
     <dimen name="d20dp">20dp</dimen>
     <dimen name="d100dp">100dp</dimen>
     <dimen name="dp56dp">56dp</dimen>
+
+    <dimen name="gesture_thumbnail_inset">8dip</dimen>
+    <dimen name="gesture_thumbnail_size">64dip</dimen>
 </resources>

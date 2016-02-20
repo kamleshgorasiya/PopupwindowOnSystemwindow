@@ -1,8 +1,10 @@
 package com.narolainfotect.demo;
 
 import android.app.ActionBar;
+import android.content.ContentProviderResult;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
@@ -20,6 +22,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,15 +36,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
          setContentView(R.layout.activity_main);
-        finish();
+
         Button button=(Button)findViewById(R.id.idBtnClick);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getApplicationContext(),"You Clicked Me??",Toast.LENGTH_LONG).show();
                 //initiatePopupWindow();
-               startService(new Intent(getBaseContext(), PopUpService.class));
-               // startService(new Intent(PopUpService.MY_SERVICE));
+                //startService(new Intent(getBaseContext(), PopUpService.class));
+                // startService(new Intent(PopUpService.MY_SERVICE));
+                startActivity(new Intent(getApplicationContext(), IncomingCallActivity.class));
                 finish();
             }
         });
@@ -76,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initiatePopupWindow() {
         try {
+
             LayoutInflater layoutInflater= (LayoutInflater) MainActivity.this
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             mView=layoutInflater.inflate(R.layout.edit_user_form_dailog,(ViewGroup) findViewById(R.id.idDialogParent));

@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="5dp"
     android:orientation="vertical"
     android:id="@+id/idDialogParent"
     android:layout_width="match_parent"
     android:background="@drawable/radius_all"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:windowBackground="@android:color/transparent"
+    android:windowIsTranslucent="true"
+    android:windowAnimationStyle="@android:style/Animation.Translucent">
         <TextView
             android:id="@+id/idTitle"
             android:textSize="@dimen/default_size"
@@ -37,6 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_name"
+                android:textColor="@color/white"
                 android:checked="true" />
 
             <CheckBox
@@ -44,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_email"
+                android:textColor="@color/white"
                 android:checked="true" />
 
             <CheckBox
@@ -51,6 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_mobile"
+                android:textColor="@color/white"
                 android:checked="true" />
         </LinearLayout>
         <LinearLayout

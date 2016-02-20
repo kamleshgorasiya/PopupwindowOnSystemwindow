@@ -1,5 +1,6 @@
 package com.narolainfotect.demo;
 
+import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -37,10 +39,11 @@ public class PopUpService extends Service {
     int recButtonFirstY;
     boolean isLastActionDown=false;
     PopUpService service;
-
+    Activity activity;
     LayoutInflater li;
 
     public PopUpService() {
+        activity=new MainActivity();
     }
 
     @Override
@@ -56,7 +59,8 @@ public class PopUpService extends Service {
         super.onCreate();
         service=this;
        ///Toast.makeText(getBaseContext(), "onCreate", Toast.LENGTH_LONG).show();
-        inittouchWindow();
+        initiatePopupWindow();
+        //inittouchWindow();
 
     }
 
@@ -70,6 +74,7 @@ public class PopUpService extends Service {
   public void inittouchWindow(){
       recButtonWindowManager= (WindowManager) getSystemService(WINDOW_SERVICE);
       recButtonWindowManager.addView(getCustomeView(),getRecbuttonLayout());
+      Log.e("Hello","inittouchWindow");
   }
     View.OnTouchListener recButtonOnTouchListener = new View.OnTouchListener() {
         @Override
@@ -130,16 +135,19 @@ public class PopUpService extends Service {
         prms = new WindowManager.LayoutParams();
         prms.format = PixelFormat.TRANSLUCENT;
         prms.flags = WindowManager.LayoutParams.FORMAT_CHANGED; // 8
-        prms.type = WindowManager.LayoutParams.TYPE_PHONE;
+        prms.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
         prms.gravity = Gravity.TOP | Gravity.CENTER;
         prms.width = WindowManager.LayoutParams.MATCH_PARENT;
         prms.height = WindowManager.LayoutParams.WRAP_CONTENT;
         // Tools.Log("getRecbuttonLayout", "return getRecbuttonLayout()");
         return prms;
+
+
     }
 
 
     private View getCustomeView(){
+        Log.e("Hello","inittouchWindow");
         if(myview!=null)
             return myview;
         li = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -147,4 +155,21 @@ public class PopUpService extends Service {
         myview.setOnTouchListener(recButtonOnTouchListener);
         return myview;
     }
+
+    private PopupWindow pwindo;
+    private void initiatePopupWindow() {
+        try {
+// We need to get the instance of the LayoutInflater
+            LayoutInflater inflater = (LayoutInflater)(LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.edit_user_form_dailog,(ViewGroup)activity.findViewById(R.id.idDialogParent));
+            pwindo = new PopupWindow(layout,ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT,true);
+            pwindo.showAtLocation(layout, Gravity.NO_GRAVITY, 0, 0);
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

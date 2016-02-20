@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 public class MyReceiver extends BroadcastReceiver {
@@ -36,6 +37,7 @@ public class MyReceiver extends BroadcastReceiver {
             if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)) {
                 Intent popIntent = new Intent(context, PopUpService.class);
                 context.startService(popIntent);
+
             }
             else if(state.equals(TelephonyManager.EXTRA_STATE_IDLE)){
                 Intent popIntent = new Intent(context, PopUpService.class);
