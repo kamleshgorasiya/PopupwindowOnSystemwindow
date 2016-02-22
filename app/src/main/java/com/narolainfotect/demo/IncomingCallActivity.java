@@ -6,12 +6,17 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import utility.FontManager;
 
 /**
  * Created by c49 on 20/02/16.
  */
 public class IncomingCallActivity extends Activity {
+
+    RelativeLayout idDialogParent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -29,6 +34,8 @@ public class IncomingCallActivity extends Activity {
             Log.d("IncominActivity: ", "flagy");
 
             setContentView(R.layout.edit_user_form_dailog);
+            idDialogParent=(RelativeLayout)findViewById(R.id.idDialogParent);
+            FontManager.markAsIconContainer(idDialogParent,FontManager.getTypeface(getApplicationContext(),FontManager.FONTAWESOME));
             TextView textView=(TextView)findViewById(R.id.idClose);
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override

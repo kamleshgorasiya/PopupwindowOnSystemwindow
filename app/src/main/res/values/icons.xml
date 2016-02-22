@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fa_user">&#xf007;</string>
+    <string name="fa_phone">&#xf095;</string>
+    <string name="fa_user_plus">&#xf234;</string>
+    <string name="fa_ban">&#xf05e;</string>
+    <string name="fa_whatsapp">&#xf232;</string>
+    <string name="fa_close">&#xf00d;</string>
+
+</resources>

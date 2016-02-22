@@ -1,112 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_margin="5dp"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/idDialogParent"
     android:layout_width="match_parent"
-    android:layout_gravity="bottom"
-    android:background="@drawable/radius_all"
     android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:layout_marginLeft="@dimen/d5dp"
+    android:layout_marginRight="@dimen/d5dp"
+    android:layout_marginTop="@dimen/d5dp"
+    android:background="@drawable/radius_all"
+    android:orientation="vertical"
+    android:windowAnimationStyle="@android:style/Animation.Translucent"
     android:windowBackground="@android:color/transparent"
-    android:windowIsTranslucent="true"
-    android:windowAnimationStyle="@android:style/Animation.Translucent">
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/idTitle"
-                android:textSize="@dimen/default_size"
-                android:layout_gravity="center"
+    android:windowIsTranslucent="true">
 
-                android:padding="10dp"
-                android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lbl_choose_fields"
-                android:textColor="@color/white" />
-            <TextView
-                android:id="@+id/idClose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="X"
-                android:padding="5dp"
-                android:layout_margin="5dp"
-                android:background="@color/white"
-               android:layout_alignParentRight="true"
-                android:textColor="@color/red"
-                android:textSize="32sp" />
-        </RelativeLayout>
-    <View
-       android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+    <TextView
+        android:id="@+id/idClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/d5dp"
+        android:text="@string/fa_close"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/d10dp"
-        android:orientation="horizontal">
+
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_margin="@dimen/d10dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/idChkName"
+            <TextView
+                android:id="@+id/idProfilePic"
+                android:layout_width="@dimen/dp56dp"
+                android:layout_height="@dimen/dp56dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@drawable/white_circle_blue_bg"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/fa_user"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp32sp" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_name"
-                android:textColor="@color/white"
-                android:checked="true" />
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/d5dp"
+                android:orientation="vertical">
 
-            <CheckBox
-                android:id="@+id/idChkEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lbl_email"
-                android:textColor="@color/white"
-                android:checked="true" />
+                <TextView
+                    android:id="@+id/idTimeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_time"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp12sp" />
 
-            <CheckBox
-                android:id="@+id/idChkMobile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lbl_mobile"
-                android:textColor="@color/white"
-                android:checked="true" />
+                <TextView
+                    android:id="@+id/idCallerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lnl_caller_name"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp18sp" />
+
+            </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white" />
+
+
+        <RelativeLayout
+            android:layout_margin="@dimen/d10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <CheckBox
-                android:id="@+id/idChkRequiredName"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/idCarrierDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_required"
-                android:textColor="@color/red"
-                android:checked="true" />
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:text="@string/lbl_number"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp14sp" />
 
-            <CheckBox
-                android:id="@+id/idChkRequiredEmail"
+            <TextView
+                android:id="@+id/idBtnViewDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_required"
-                android:textColor="@color/red"
-                android:checked="true" />
+                android:layout_alignParentRight="true"
+                android:text="@string/lbl_view"
+                android:background="@drawable/btn_bg"
+                android:paddingLeft="@dimen/d10dp"
+                android:paddingTop="@dimen/d5dp"
+                android:paddingRight="@dimen/d10dp"
+                android:paddingBottom="@dimen/d5dp"
+                android:layout_centerVertical="true"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/sp12sp" />
 
-            <CheckBox
-                android:id="@+id/idChkRequiredMobile"
-                android:layout_width="wrap_content"
+        </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+       >
+
+        <LinearLayout
+            android:layout_margin="@dimen/d10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radius_all_bg_white"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/idCall"
+                android:padding="@dimen/d5dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/btn_bg"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_required"
-                android:textColor="@color/red"
-                android:checked="true" />
 
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fa_phone"
+                    android:textColor="@color/blue"
+                    android:textSize="24sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_call"
+                    android:textAllCaps="true"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/sp12sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/idSaveContact"
+                android:padding="@dimen/d5dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bg"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fa_user_plus"
+                    android:textColor="@color/blue"
+                    android:textSize="24sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_save"
+                    android:textAllCaps="true"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/sp12sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/idBlockUser"
+                android:padding="@dimen/d5dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bg"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fa_ban"
+                    android:textColor="@color/blue"
+                    android:textSize="24sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_block"
+                    android:textAllCaps="true"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/sp12sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/idWhatApp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bg"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/d5dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fa_whatsapp"
+                    android:textColor="@color/blue"
+                    android:textSize="24sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_whats_aapp"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/sp12sp" />
+
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>
