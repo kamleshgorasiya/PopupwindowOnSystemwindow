@@ -36,16 +36,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
          setContentView(R.layout.activity_main);
-    finish();
+    //finish();
         Button button=(Button)findViewById(R.id.idBtnClick);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getApplicationContext(),"You Clicked Me??",Toast.LENGTH_LONG).show();
                 //initiatePopupWindow();
-                //startService(new Intent(getBaseContext(), PopUpService.class));
+                startService(new Intent(getBaseContext(), PopUpService.class));
                 // startService(new Intent(PopUpService.MY_SERVICE));
-                startActivity(new Intent(getApplicationContext(), IncomingCallActivity.class));
+               // startActivity(new Intent(getApplicationContext(), IncomingCallActivity.class));
                 finish();
             }
         });
@@ -123,6 +123,28 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private PopupWindow nertworkErrorpp;
+    private void initNetErrorPopupWindow() {
+        try {
+// We need to get the instance of the LayoutInflater
+            LayoutInflater inflater = (LayoutInflater) MainActivity.this
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.passcode_not_match_dialog,(ViewGroup) findViewById(R.id.idDialogParent));
+            nertworkErrorpp = new PopupWindow(layout,ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT,true);
+            nertworkErrorpp.showAtLocation(layout, Gravity.CENTER, 0, 0);
 
+
+            Button btnOk = (Button) layout.findViewById(R.id.btnOk);
+            btnOk.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+
+                    nertworkErrorpp.dismiss();
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

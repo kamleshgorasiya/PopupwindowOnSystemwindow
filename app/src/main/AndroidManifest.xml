@@ -29,6 +29,7 @@
 
         <service
             android:name=".PopUpService"
+
             android:enabled="true"
             android:exported="true" >
             <intent-filter android:label="@string/lbl_name" >
@@ -38,6 +39,7 @@
 
         <receiver
             android:name=".MyReceiver"
+            android:process=":remote"
             android:enabled="true"
             android:exported="true" >
             <intent-filter>

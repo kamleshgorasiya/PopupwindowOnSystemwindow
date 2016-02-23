@@ -22,6 +22,8 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import utility.FontManager;
+
 public class PopUpService extends Service {
     public static final String MY_SERVICE = "com.narolainfotect.demo.service.MY_SERVICE";
     private View myview;
@@ -59,11 +61,38 @@ public class PopUpService extends Service {
         super.onCreate();
         service=this;
        ///Toast.makeText(getBaseContext(), "onCreate", Toast.LENGTH_LONG).show();
-        initiatePopupWindow();
-        //inittouchWindow();
+        //initiatePopupWindow();
+        inittouchWindow();
 
     }
 
+    @Override
+    public void onStart(Intent intent, int startId) {
+        Toast.makeText(getBaseContext(),"onStart", Toast.LENGTH_LONG).show();
+       // startInOtherThread(intent,startId);
+    }
+    public void startInOtherThread(final Intent intent, final int startId){
+        Thread t = new Thread("MyService(" + startId + ")") {
+            @Override
+            public void run() {
+                _onStart(intent, startId);
+
+            }
+        };
+        t.start();
+    }
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Toast.makeText(getBaseContext(),"onStartCommand", Toast.LENGTH_LONG).show();
+      //  startInOtherThread(intent, startId);
+        return START_STICKY;
+    }
+    private void _onStart(final Intent intent, final int startId) {
+        //Your Start-Code for the service
+        Intent  callActivity=new Intent(this,IncomingCallActivity.class);
+        callActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(callActivity);
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -72,6 +101,7 @@ public class PopUpService extends Service {
     }
 
   public void inittouchWindow(){
+
       recButtonWindowManager= (WindowManager) getSystemService(WINDOW_SERVICE);
       recButtonWindowManager.addView(getCustomeView(),getRecbuttonLayout());
       Log.e("Hello","inittouchWindow");
@@ -152,6 +182,7 @@ public class PopUpService extends Service {
             return myview;
         li = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         myview = li.inflate(R.layout.edit_user_form_dailog, null);
+        FontManager.markAsIconContainer(myview,FontManager.getTypeface(getBaseContext(),FontManager.FONTAWESOME));
         myview.setOnTouchListener(recButtonOnTouchListener);
         return myview;
     }
