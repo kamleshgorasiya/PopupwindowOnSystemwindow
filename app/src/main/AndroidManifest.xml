@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.narolainfotect.demo" >
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" tools:ignore="ProtectedPermissions"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission  android:name="android.permission.WRITE_EXTERNAL_STORAGE"  />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,37 +22,59 @@
             </intent-filter>
         </activity>
         <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:name=".IncomingCallActivity"
-            android:label="@string/app_name" >
-
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".PopupActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
 
         <service
             android:name=".PopUpService"
-
             android:enabled="true"
             android:exported="true" >
             <intent-filter android:label="@string/lbl_name" >
                 <action android:name="com.narolainfotect.demo.service.MY_SERVICE" />
             </intent-filter>
         </service>
+        <service
+            android:name=".BroadCastServiceService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
 
+        <!--
         <receiver
             android:name=".MyReceiver"
-            android:process=":remote"
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" >
                 </action>
             </intent-filter>
-          <!--  <intent-filter>
+          &lt;!&ndash;  <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
                 <action android:name="android.intent.action.PHONE_STATE" />
-            </intent-filter>-->
+            </intent-filter>&ndash;&gt;
         </receiver>
+        -->
+        <service
+            android:name=".BroadCastService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
 
+        <receiver android:name=".CallReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
