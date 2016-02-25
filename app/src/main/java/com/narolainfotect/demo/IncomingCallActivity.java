@@ -30,7 +30,7 @@ public class IncomingCallActivity extends Activity {
 
 
             //getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
+            getWindow().addFlags(WindowManager.LayoutParams.FORMAT_CHANGED);
             Log.d("IncominActivity: ", "flagy");
 
             setContentView(R.layout.edit_user_form_dailog);

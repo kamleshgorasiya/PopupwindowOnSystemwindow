@@ -1,13 +1,18 @@
 package com.narolainfotect.demo;
 
+import android.Manifest;
 import android.app.ActionBar;
 import android.content.ContentProviderResult;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.provider.ContactsContract;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
      int mCurrentX = 20;
      int mCurrentY = 50;
 
+    public static final int MY_PERMISSIONS_REQUEST_SYSTEM_ALERT_WINDOW=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
          setContentView(R.layout.activity_main);
+       // startService(new Intent(getBaseContext(), BroadCastService.class));
     //finish();
         Button button=(Button)findViewById(R.id.idBtnClick);
         button.setOnClickListener(new View.OnClickListener() {
@@ -43,10 +50,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Toast.makeText(getApplicationContext(),"You Clicked Me??",Toast.LENGTH_LONG).show();
                 //initiatePopupWindow();
-                startService(new Intent(getBaseContext(), PopUpService.class));
+               startService(new Intent(getBaseContext(), PopUpService.class));
                 // startService(new Intent(PopUpService.MY_SERVICE));
                // startActivity(new Intent(getApplicationContext(), IncomingCallActivity.class));
                 finish();
+               /* Intent intent = new Intent(Intent.ACTION_INSERT, ContactsContract.Contacts.CONTENT_URI);
+                intent.putExtra(ContactsContract.Intents.Insert.PHONE,"9227350852");
+
+                startActivity(intent);*/
             }
         });
 
@@ -54,7 +65,29 @@ public class MainActivity extends AppCompatActivity {
        // initiatePopupWindow();
 
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_SYSTEM_ALERT_WINDOW: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
+                  Toast.makeText(getApplicationContext(),permissions.toString(),Toast.LENGTH_LONG).show();
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
