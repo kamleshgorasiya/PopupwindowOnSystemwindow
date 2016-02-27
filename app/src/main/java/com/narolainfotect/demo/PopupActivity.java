@@ -1,9 +1,11 @@
 package com.narolainfotect.demo;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -31,12 +33,7 @@ public class PopupActivity extends Activity {
     private WindowManager recButtonWindowManager;
     private Button recButton = null;
     WindowManager.LayoutParams prms;
-    boolean touchconsumedbyMove = false;
-    int recButtonLastX;
-    int recButtonLastY;
-    int recButtonFirstX;
-    int recButtonFirstY;
-    boolean isLastActionDown=false;
+
     PopUpService service;
     Activity activity;
     LayoutInflater li;
@@ -65,12 +62,19 @@ public class PopupActivity extends Activity {
         Log.e("Hello","inittouchWindow");
     }
     View.OnTouchListener recButtonOnTouchListener = new View.OnTouchListener() {
+        boolean touchconsumedbyMove = false;
+        int recButtonLastX;
+        int recButtonLastY;
+        int recButtonFirstX;
+        int recButtonFirstY;
+        boolean isLastActionDown=false;
+        WindowManager.LayoutParams prm = getRecbuttonLayout();
+        int totalDeltaX = recButtonLastX - recButtonFirstX;
+        int totalDeltaY = recButtonLastY - recButtonFirstY;
+
         @Override
         public boolean onTouch(View v, MotionEvent event) {
 
-            WindowManager.LayoutParams prm = getRecbuttonLayout();
-            int totalDeltaX = recButtonLastX - recButtonFirstX;
-            int totalDeltaY = recButtonLastY - recButtonFirstY;
 
             switch(event.getActionMasked())
             {

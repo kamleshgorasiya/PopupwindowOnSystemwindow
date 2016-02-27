@@ -16,6 +16,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,8 +30,12 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
      private View mView;
@@ -42,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
          setContentView(R.layout.activity_main);
-       // startService(new Intent(getBaseContext(), BroadCastService.class));
+        startService(new Intent(getBaseContext(), BroadCastService.class));
+        startService(new Intent(getBaseContext(), ContactObserver.class));
     //finish();
         Button button=(Button)findViewById(R.id.idBtnClick);
         button.setOnClickListener(new View.OnClickListener() {
@@ -50,9 +56,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Toast.makeText(getApplicationContext(),"You Clicked Me??",Toast.LENGTH_LONG).show();
                 //initiatePopupWindow();
-               startService(new Intent(getBaseContext(), PopUpService.class));
+                final Intent intent = new Intent(getApplicationContext(), PopUpService.class);
+                intent.putExtra("phone_no", "Demo");
+                intent.putExtra("date_time", new Date());
+                startService(intent);
                 // startService(new Intent(PopUpService.MY_SERVICE));
-               // startActivity(new Intent(getApplicationContext(), IncomingCallActivity.class));
+                // startActivity(new Intent(getApplicationContext(), IncomingCallActivity.class));
                 finish();
                /* Intent intent = new Intent(Intent.ACTION_INSERT, ContactsContract.Contacts.CONTENT_URI);
                 intent.putExtra(ContactsContract.Intents.Insert.PHONE,"9227350852");
@@ -65,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
        // initiatePopupWindow();
 
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {

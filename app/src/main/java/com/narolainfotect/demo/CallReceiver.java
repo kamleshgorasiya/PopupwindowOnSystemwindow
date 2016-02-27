@@ -26,18 +26,23 @@ public class CallReceiver extends PhonecallReceiver
 
         context =   ctx;
 
-        final Intent intent = new Intent(context, PopupActivity.class);
+        /*final Intent intent = new Intent(context, PopupActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.putExtra("phone_no", number);
-        intent.putExtra("date_time",start);
+        intent.putExtra("date_time",start);*/
+
+        final Intent intent = new Intent(context, PopUpService.class);
+        intent.putExtra("phone_no", number);
+        intent.putExtra("date_time", start);
 
         new Handler().postDelayed(new Runnable()
         {
             @Override
             public void run()
             {
-                context.startActivity(intent);
+               // ctx.startActivity(intent);
+                ctx.startService(intent);
             }
         },2000);
 

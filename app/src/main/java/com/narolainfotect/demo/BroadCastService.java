@@ -35,10 +35,12 @@ public class BroadCastService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("TAG", "service started");
-        MyReceiver reciever = new MyReceiver();
+        CallReceiver reciever = new CallReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("restartservice");
+        intentFilter.addAction("restart_contact_observer");
         intentFilter.addAction("android.intent.action.PHONE_STATE");
+        intentFilter.addAction("android.intent.action.NEW_OUTGOING_CALL");
         registerReceiver(reciever, intentFilter);
         // If we get killed, after returning from here, restart
         return START_STICKY;

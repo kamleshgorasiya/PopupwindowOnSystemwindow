@@ -7,6 +7,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.telephony.TelephonyManager;
+import android.util.Log;
+
 import java.util.Date;
 
 public abstract class PhonecallReceiver extends BroadcastReceiver
@@ -24,8 +26,7 @@ public abstract class PhonecallReceiver extends BroadcastReceiver
             if (intent.getAction().equals("android.intent.action.NEW_OUTGOING_CALL"))
             {
                 savedNumber = intent.getExtras().getString("android.intent.extra.PHONE_NUMBER");
-            }
-            else
+            }else
             {
                 String stateStr = intent.getExtras().getString(TelephonyManager.EXTRA_STATE);
                 String number = intent.getExtras().getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
@@ -45,6 +46,15 @@ public abstract class PhonecallReceiver extends BroadcastReceiver
 
                 onCallStateChanged(context, state, number);
             }
+            if (intent.getAction().equals("restartservice")) {
+                context.startService(new Intent(context.getApplicationContext(), BroadCastService.class));
+                Log.d("TAG", "restart");
+            }
+            if (intent.getAction().equals("restart_contact_observer")) {
+                context.startService(new Intent(context.getApplicationContext(), ContactObserver.class));
+                Log.d("TAG", "restart");
+            }
+
         }
         catch (Exception e)
         {

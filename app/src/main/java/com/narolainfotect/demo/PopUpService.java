@@ -23,6 +23,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Date;
+
 import utility.FontManager;
 
 public class PopUpService extends Service {
@@ -44,6 +46,8 @@ public class PopUpService extends Service {
     PopUpService service;
     Activity activity;
     LayoutInflater li;
+    Date  date;
+    String number;
 
     public PopUpService() {
         activity=new MainActivity();
@@ -70,23 +74,37 @@ public class PopUpService extends Service {
     @Override
     public void onStart(Intent intent, int startId) {
         Toast.makeText(getBaseContext(),"onStart", Toast.LENGTH_LONG).show();
-       // startInOtherThread(intent,startId);
+       // startInOtherThread(intent, startId);
+        getNamerAndTime(intent);
+        initTouchWindow();
     }
     public void startInOtherThread(final Intent intent, final int startId){
         Thread t = new Thread("MyService(" + startId + ")") {
             @Override
             public void run() {
+
                 _onStart(intent, startId);
+
+
 
             }
         };
         t.start();
     }
+
+    public void getNamerAndTime(Intent myIntent){
+        if (myIntent !=null && myIntent.getExtras()!=null){
+
+             number = myIntent.getExtras().getString("phone_no");//getIntent().getExtras().getString("phone_no")+" is calling you"
+            date=(Date)myIntent.getSerializableExtra("date_time");
+            }
+    }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Toast.makeText(getBaseContext(),"onStartCommand", Toast.LENGTH_LONG).show();
-      //  startInOtherThread(intent, startId);
-        inittouchWindow();
+        getNamerAndTime(intent);
+        initTouchWindow();
+        //startInOtherThread(intent, startId);
         return START_NOT_STICKY;
     }
     private void _onStart(final Intent intent, final int startId) {
@@ -102,13 +120,14 @@ public class PopUpService extends Service {
 
     }
 
-  public void inittouchWindow(){
+  public void initTouchWindow(){
 
       recButtonWindowManager= (WindowManager) getSystemService(WINDOW_SERVICE);
       recButtonWindowManager.addView(getCustomeView(),getRecbuttonLayout());
+
       Log.e("Hello","inittouchWindow");
   }
-    View.OnTouchListener recButtonOnTouchListener = new View.OnTouchListener() {
+    /*View.OnTouchListener recButtonOnTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
 
@@ -159,7 +178,7 @@ public class PopUpService extends Service {
 
             return touchconsumedbyMove;
         }
-    };
+    };*/
     private WindowManager.LayoutParams getRecbuttonLayout() {
         if (prms != null) {
             return prms;
@@ -185,8 +204,13 @@ public class PopUpService extends Service {
         li = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         myview = li.inflate(R.layout.edit_user_form_dailog, null);
         TextView textView=(TextView)myview.findViewById(R.id.idTimeLabel);
-        textView.setText("PopupService");
-        FontManager.markAsIconContainer(myview,FontManager.getTypeface(getBaseContext(),FontManager.FONTAWESOME));
+        //Date date=(Date)getIntent().getSerializableExtra("date_time");
+        textView.setText(date.toString());
+
+        TextView idCallerName=(TextView)myview.findViewById(R.id.idCallerName);
+        idCallerName.setText(number);
+        FontManager.markAsIconContainer(myview, FontManager.getTypeface(getBaseContext(), FontManager.FONTAWESOME));
+        OnSwipeTouchListener recButtonOnTouchListener=new OnSwipeTouchListener(this, getRecbuttonLayout(), getCustomeView(),recButtonWindowManager);
         myview.setOnTouchListener(recButtonOnTouchListener);
         return myview;
     }
