@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/idDialogParent"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
     android:layout_marginLeft="@dimen/d5dp"
@@ -10,7 +10,7 @@
     android:background="@drawable/radius_all"
     android:orientation="vertical"
     android:windowAnimationStyle="@android:style/Animation.Translucent"
-    android:windowBackground="@android:color/transparent"
+    android:windowBackground="@color/screen_background_dark_transparent"
     android:windowIsTranslucent="true">
 
     <TextView
@@ -60,7 +60,7 @@
                     android:id="@+id/idTimeLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/lbl_time"
+                    android:text="@string/app_name"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp12sp" />
 
@@ -129,7 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:background="@drawable/radius_all_bg_white"
+            android:background="@drawable/card_type_bg_white"
             android:orientation="horizontal">
             <LinearLayout
                 android:id="@+id/idCall"
